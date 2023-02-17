@@ -20,15 +20,28 @@
 - then initialize git, `git init`
 - in `.gitignore` add `.env` and `venv` to ignore these files and folders
 
+## Start
+- run `source venv/bin/activate`
+- go to `cd program`
+- run `python3 main.py`
+- there should be output below:
+```
+Connection Successful
+Account ID:  <ID>
+Quote Balance:  <Amount>
+```
+
 ## Operation
-Constants
-- Amount
-- Mode
-- Trigger
-- Key Imports
+- Connect to DYDX
+- Place Market Order
+- Abort All Open Orders
+- Construct Market Prices
+- Store Cointegrated Pairs
+- While True
+  - Manage Existing Trades
+  - Open Positions
 
-
-- Get Prices
-- Manage Open Trades
-- Cler All Trades
-- Open Trades
+## Explanation on Files
+- `__pycache__` is a folder for compiled python 3 bytecode
+- `constants.py` contains all the constants
+- `func_connections.py` contains connection to DYDX
