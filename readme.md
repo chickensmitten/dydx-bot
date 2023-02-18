@@ -53,7 +53,10 @@ Quote Balance:  <Amount>
     - Place and save trades
 
 ## Deploying to AWS EC2
-- Upload code and venv, add environment variable and add cron job.
+- Steps to setup AWS EC2: 
+  1. Upload code and venv
+  2. add environment variable
+  3. add cron job
 - Create security groups with preferred name with description on the permissions like `Allows SSH for developers`
   - Add rule of SSH type and allow all IP addresses. Then create security group.
 - Go to EC2, launch instances, Amazon aws and ubuntu are normally free tier. Select ubuntu
@@ -63,8 +66,11 @@ Quote Balance:  <Amount>
 - Go into ubuntu terminal
   - `sudo apt-get update`
   - `python --version` then install `sudo apt-get install python3.10`
-  - `pip3 freeze > requirements.txt` to update the file
-
+- In local repo, `pip3 freeze > requirements.txt` then commit to github
+- Go to github repo -> code -> get https url to add the file in ubuntu `git clone https://github.com/chickensmitten/dydx-bot.git dydx_bot`
+- in ubuntu terminal enter into the `dydx_bot` folder and run `pip3 install -r requirements.txt`
+- `touch .env` then `sudo nano .env`, then put it all your env variables, then ctrl + x to exit, with y then enter.
+- `cd program` then run `python3 main.py`
 
 ## Explanation on Files
 - `__pycache__` is a folder for compiled python 3 bytecode
