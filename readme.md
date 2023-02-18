@@ -51,7 +51,20 @@ Quote Balance:  <Amount>
     - Check if exit and exit open trades
     - Check open positions
     - Place and save trades
-    
+
+## Deploying to AWS EC2
+- Upload code and venv, add environment variable and add cron job.
+- Create security groups with preferred name with description on the permissions like `Allows SSH for developers`
+  - Add rule of SSH type and allow all IP addresses. Then create security group.
+- Go to EC2, launch instances, Amazon aws and ubuntu are normally free tier. Select ubuntu
+- For architecture, might want to select ARM if using ARM, else, select Intel x86
+- Create key pair is recommended
+- Click on "Actions", click on "Connect" and "Connect"
+- Go into ubuntu terminal
+  - `sudo apt-get update`
+  - `python --version` then install `sudo apt-get install python3.10`
+  - `pip3 freeze > requirements.txt` to update the file
+
 
 ## Explanation on Files
 - `__pycache__` is a folder for compiled python 3 bytecode
