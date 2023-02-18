@@ -1,5 +1,31 @@
 # DYDX Bot
 
+## Convergence Trade of Two Trading pairs with Statistical Arbitrage
+- In this trading mehtod, you are essentially betting that two trading pairs are going to revert to the mean. LTCM likely used the same trading method. Refer to this [link](https://phrygian-starburst-75c.notion.site/CASE-STUDY-LTCM-1a2fc52619b34e8485176176b78401d4). Below is an introduction of how it works:
+  1. identify cointegrated pairs
+  Cointegration is the difference between two trading pairs prices converging and diverging. Two trading pairs that are cointegrated are generally correlated. However, being correlated doesn't mean that the two prices will cross (aka mean revert). If this is the case, the two trading pairs doon't meet the requirements to be cointegrated. 
+    - Below is an example of cointegrated pairs.
+    ![cointegrated pairs](./public/cointegrated_pairs.png)
+    - Below is an example of correlated but not cointegrated pairs
+    ![not cointegrated pairs](./public/EURUSD.png)
+    - Cointegrated pairs with in `python` can be represented with `statsmodel`
+    ```
+    from statsmodels.tsa.stattools import coint
+    coint_res = coint(series_1, series_2)
+    ```
+  2. Spread is used as a indication that there is a chance for mean reversion. The larger the spread the higher the possibility of mean reversion
+  ![spread](./public/spread.png)
+  3. But what is the likelihood of mean reversion when the spread is wide? The answer is the Z-score spread.
+  ![z-score spread](./public/spread_z-score.png)
+    - From the image above, you can see that the spread sometimes has a z-score or standard deviation of 4. At 4 standard deviations, it means the current number has a chance of 0.01% outside the mean, giving it a high probability that it will revert back to the mean. Refer to [magnitudes in standard deviation](https://phrygian-starburst-75c.notion.site/Standard-Deviation-Magnitudes-710aaf85c6ed41a9898d3abee2713c65) for more information.
+
+- Important concepts used for this code:
+  - z-score: (x - mean) / std
+  - Spread: series_1 - (hedge_ratio * series_2)
+  - Hedge Ratio: How much of one trading pair would I need to buy relative to another trading pair. i.e. 16 ETH equals to 1 BTC
+  - Half-Life: How long will it take for our spread to revert. It can be argued that this is one of the [reasons](https://phrygian-starburst-75c.notion.site/Two-views-of-risk-and-return-Capital-Ideas-Online-Kelly-Criterion-Convergence-Trade-LTCM-84556317915941108047e7d716b7b60c) that LCTM failed.
+  - Kelly Criterion: position sizing for risk management. It can be argued that this is another [reason](https://phrygian-starburst-75c.notion.site/Two-views-of-risk-and-return-Capital-Ideas-Online-Kelly-Criterion-Convergence-Trade-LTCM-84556317915941108047e7d716b7b60c) that LCTM failed.
+
 ## Setup Instructions
 - Have Metamask wallet, change to Goerli Network
 - Go to Goerli Faucet to send ETH
