@@ -73,6 +73,30 @@ Quote Balance:  <Amount>
 - `cd program` then run `python3 main.py`
 - When code is updated in local repo, in ubuntu cli, have to run `git reset --hard HEAD` then run `git pull origin --rebase`
 
+## Automate with CRON in AWS EC2
+- refer to `crontab.guru`
+- How to read cron job
+```
+crontab -e
+CRON item - Daily
+0 12 * * * /bin/timeout -s 2 86330 python3 dydx_bot/program/main.py > output.txt  2>&1
+CRON item - 5 Mins
+*/5 * * * * /bin/timeout -s 2 290 python3 dydx_bot/program/main.py > output.txt  2>&1
+crontab -l
+```
+- Then below is the anatomy to the command: 
+  - `*/5 * * * * /bin/timeout` tells it when to run 
+  - `-s 2 290` tells it to kill it after 290 seconds 
+  - when it runs, tells it to execute `python3 dydx_bot/program/main.py`
+  - then print output to `> output.txt` with `2>&1` at the end. Refer to this [link](https://stackoverflow.com/questions/818255/what-does-21-mean)
+  - `crontab -l` sees what cronjob is listed
+- Setting up cronbjob in ubuntu
+  - in ubuntu cli, start with `crontab -e` to edit. 
+  - select nano editor
+  - then paste one of the cron items
+  - ctrl + x to save
+  - type `top` to see if the cronjob is running, you should see python3 running after your determined period
+
 ## Explanation on Files
 - `__pycache__` is a folder for compiled python 3 bytecode
 - `constants.py` contains all the constants. It also functions as on-off switch for specific functions
