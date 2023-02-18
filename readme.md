@@ -71,6 +71,7 @@ Quote Balance:  <Amount>
 - in ubuntu terminal enter into the `dydx_bot` folder and run `pip3 install -r requirements.txt`
 - `touch .env` then `sudo nano .env`, then put it all your env variables, then ctrl + x to exit, with y then enter.
 - `cd program` then run `python3 main.py`
+- When code is updated in local repo, in ubuntu cli, have to run `git reset --hard HEAD` then run `git pull origin --rebase`
 
 ## Explanation on Files
 - `__pycache__` is a folder for compiled python 3 bytecode
