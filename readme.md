@@ -96,6 +96,7 @@ crontab -l
   - then paste one of the cron items
   - ctrl + x to save
   - type `top` to see if the cronjob is running, you should see python3 running after your determined period
+- to close all positions manually, go to ubuntu cli, program directory, then run the main.py file to close all positions before shutting it down.
 
 ## Explanation on Files
 - `__pycache__` is a folder for compiled python 3 bytecode
